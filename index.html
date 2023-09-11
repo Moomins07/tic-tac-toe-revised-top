@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body
+    class="overflow-hidden d-flex justify-content-center align-items-center vh-100"
+  >
+    <!-- ENDGAME MODAL OVERLAY -->
+    <div
+      class="overlay d-none flex-column justify-content-center align-items-center"
+    >
+      <h2 class="display-1 text-light" id="winning-text">X Wins!</h2>
+      <button
+        class="btn btn-outline-primary mt-3 w-25 fw-semibold text-light mt-5"
+        id="restart"
+      >
+        Restart
+      </button>
+    </div>
+
+    <div
+      class="container d-flex flex-column justify-content-center vh-100 adjusted-center"
+    >
+      <div
+        class="h1 d-flex flex-row justify-content-center mb-5 d-none"
+        id="backBtn"
+      >
+        <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+      </div>
+      <div class="row d-none d-flex justify-content-center" id="playersEl">
+        <div class="h4 text-center display-2 mb-5">Tic Tac Toe!</div>
+        <div class="col-md-3 text-center player-element me-4">
+          <div class="display-6">
+            <h4>Player 1</h4>
+          </div>
+        </div>
+        <div class="col-md-3 text-center player-element">
+          <div class="display-6 w-auto">
+            <h4>Player 2</h4>
+          </div>
+        </div>
+      </div>
+      <div
+        id="mainContainerEl"
+        class="row d-flex flex-column align-items-center"
+      >
+        <div class="h4 text-center display-2 mb-5">Tic Tac Toe!</div>
+        <div class="col-md-6 g-5">
+          <form class="mt-5">
+            <input
+              class="form-control form-control-lg border-primary playerInput"
+              type="text"
+              placeholder="Player 1"
+            />
+            <input
+              class="form-control form-control-lg mt-3 border-primary playerInput"
+              type="text"
+              placeholder="Player 2"
+            />
+
+            <button class="btn btn-primary mt-3 w-100 fw-semibold" id="start">
+              Start
+            </button>
+            <!-- <button class="btn btn-primary mt-3 w-100 fw-semibold">
+              Restart
+            </button> -->
+          </form>
+        </div>
+      </div>
+
+      <div class="board d-none" id="board"></div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
+
+<!-- <div class="cell x" data-cell></div>
+        <div class="cell circle" data-cell></div>
+        <div class="cell" data-cell></div>
+
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div> -->

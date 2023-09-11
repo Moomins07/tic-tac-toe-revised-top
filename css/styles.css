@@ -1,0 +1,110 @@
+body {
+  background: linear-gradient(to bottom right, #74b9ff, #a29bfe);
+}
+
+.container {
+  height: 100vh;
+}
+
+.board {
+  width: 100%;
+  height: 40%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell.x, .cell.circle {
+  cursor: not-allowed;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+  border: 5px solid black;
+  cursor: pointer;
+  position: relative;
+}
+.cell:nth-child(-n+3) {
+  border-top: none;
+}
+.cell:nth-child(1n+7) {
+  border-bottom: none;
+}
+.cell:nth-child(3n+1) {
+  border-left: none;
+}
+.cell:nth-child(3n+3) {
+  border-right: none;
+}
+
+.container .board .cell {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.container .board .cell.x::before, .container .board .cell.x::after {
+  content: "";
+  position: absolute;
+  background: black;
+  width: 12px;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+}
+.container .board .cell.x::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.container .board .cell.x::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.container .board .cell.circle::before {
+  content: "";
+  position: absolute;
+  border: 12px solid black;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.adjusted-center {
+  transform: translateY(-10%);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+#restart {
+  border-width: 3px;
+}
+
+.player-element {
+  /* Other styles for your player elements */
+  transition: border-color 0.5s ease-out; /* Adjust the timing (0.5s) if needed */
+  border-width: 7.5px;
+  border-style: solid;
+  border-color: transparent; /* Start with a transparent border so it's invisible by default */
+  border-radius: 1rem;
+  max-width: 1rem;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.border-active {
+  border-color: purple; /* Active border color */
+}

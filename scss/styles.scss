@@ -1,0 +1,134 @@
+$cell-size: 100px;
+$mark-size: calc(var(--cell-size) * 0.9);
+
+body {
+  background: linear-gradient(to bottom right, #74b9ff, #a29bfe);
+}
+
+.container {
+  height: 100vh;
+}
+
+.board {
+  width: 100%;
+  height: 40%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  &.x,
+  &.circle {
+    cursor: not-allowed;
+  }
+}
+.cell {
+  height: $cell-size;
+  width: $cell-size;
+  border: 5px solid black;
+  cursor: pointer;
+  position: relative;
+
+  &:nth-child(-n + 3) {
+    border-top: none;
+  }
+
+  &:nth-child(1n + 7) {
+    border-bottom: none;
+  }
+
+  &:nth-child(3n + 1) {
+    border-left: none;
+  }
+
+  &:nth-child(3n + 3) {
+    border-right: none;
+  }
+}
+
+// Place marker
+.container {
+  .board {
+    .cell {
+      position: relative;
+      width: 100px; // or any other dimension you want
+      height: 100px;
+
+      &.x {
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          background: black;
+          width: 12px; // width of the X's lines
+          height: 90%; // adjusting the length to fit within the cell
+          top: 50%;
+          left: 50%;
+          transform-origin: center center;
+        }
+
+        &::before {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &::after {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+      }
+
+      &.circle {
+        &::before {
+          content: '';
+          position: absolute;
+          border: 12px solid black; // adjust as needed for circle's border thickness
+          border-radius: 50%; // this makes it a circle
+          width: 80%; // adjust as needed
+          height: 80%; // adjust as needed
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
+
+.adjusted-center {
+  transform: translateY(-10%);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); // This gives you the 50% dark opacity
+  z-index: 9999; // This ensures the overlay is on top of other elements
+  // display: none; // By default, the overlay will not be
+}
+
+#restart {
+  border-width: 3px;
+}
+
+.player-element {
+  /* Other styles for your player elements */
+  transition: border-color 0.5s ease-out; /* Adjust the timing (0.5s) if needed */
+  border-width: 7.5px;
+  border-style: solid;
+  border-color: transparent; /* Start with a transparent border so it's invisible by default */
+  border-radius: 1rem;
+  max-width: 1rem;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.border-active {
+  border-color: purple; /* Active border color */
+}
