@@ -1,7 +1,7 @@
 # Odin Project tic-tac-toe.
 A tic-tac-toe game that I developed during The Odin Project JavaScript course using Bootstrap5, SASS, CSS and Vanilla JavaScript.
 This was particularly challenging as the main focus of this project was to adopt a particular style of programming. Such as the following:  
-Potentially using factory functions and modules.  
+Using factory functions and modules.  
 Ensuring that code remained private, not public, unless necessary to do so.  
 Using closure, abstraction and encapsulation.  
 IIFE were also used during this project.  
