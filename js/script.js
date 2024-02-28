@@ -25,7 +25,6 @@ const GameBoard = (() => {
   };
 
   const board = Array(9).fill('');
-  const winningMessageTextElement = document.getElementById('winning-text');
 
   function getCircleTurn() {
     return Config.circleTurn;
@@ -47,15 +46,6 @@ const GameBoard = (() => {
     cell.classList.add(currentClass);
   }
 
-  function endGame(draw) {
-    if (draw) {
-      winningMessageTextElement.innerText = 'Draw!';
-    } else {
-      winningMessageTextElement.innerText = `${!getCircleTurn() ? "O's" : "X's"
-        } Win!`;
-    }
-    GameUI.endGameDisplay()
-  }
 
   function changeTurn() {
     setCircleTurn(!Config.circleTurn)
@@ -105,11 +95,11 @@ const GameBoard = (() => {
     changeTurn()
 
     if (draw()) {
-      endGame(true)
+      GameUI.endGame(true)
 
     } else if (checkWin(currentClass)) {
       // Not a draw so pass in false
-      endGame(false)
+      GameUI.endGame(false)
 
     }
 
@@ -155,15 +145,14 @@ const GameBoard = (() => {
 
 
 const GameUI = (() => {
-  const overlay = document.querySelector('.overlay');
   const boardEl = document.getElementById('board');
   let usersCreated = null;
   const playersEl = document.getElementById('playersEl');
   const playerTurnBox1 = playersEl.children[1];
   const playerTurnBox2 = playersEl.children[2];
   const backBtnEl = document.getElementById('backBtn');
-
-
+  const overlay = document.querySelector('.overlay');
+  const winningMessageTextElement = document.getElementById('winning-text');
   // PRIVATE FUNCTIONS
 
 
@@ -188,6 +177,17 @@ const GameUI = (() => {
     }
   }
 
+  function endGame(draw) {
+    if (draw) {
+      winningMessageTextElement.innerText = 'Draw!';
+    } else {
+      winningMessageTextElement.innerText = `${!GameBoard.getCircleTurn() ? "O's" : "X's"
+        } Win!`;
+    }
+    overlay.classList.remove('d-none');
+    overlay.classList.add('d-flex');
+  }
+
   // ONLY RETURN PUBLIC FUNCCTIONS
   function restartGame() {
     overlay.classList.toggle('d-none');
@@ -197,10 +197,6 @@ const GameUI = (() => {
     GameBoard.setCircleTurn(false)
   }
 
-  function endGameDisplay() {
-    overlay.classList.remove('d-none');
-    overlay.classList.add('d-flex');
-  }
   // Required in GameBoard module
   function createPlayers() {
     const playerInput = document.querySelectorAll('.playerInput');
@@ -250,7 +246,6 @@ const GameUI = (() => {
 
   // Required in GameBoard module
   function playerTurnBorders() {
-
     if (GameBoard.getCircleTurn()) {
       playerTurnBox1.classList.add('border-active');
       playerTurnBox2.classList.remove('border-active');
@@ -294,8 +289,6 @@ const GameUI = (() => {
   return {
     restartGame,
 
-    endGameDisplay,
-
     createPlayers,
 
     setGameBoard,
@@ -304,6 +297,7 @@ const GameUI = (() => {
 
     setUpListeners,
 
+    endGame
     // I return this object because I use it on line 46 inside GameBoard module
 
 
